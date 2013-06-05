@@ -8,6 +8,6 @@ class ssh::service {
     hasstatus   => true,
     hasrestart  => true,
     enable      => true,
-    require     => Class["ssh::config"],
+    require     => Class['ssh::config'],
   }
 }

@@ -3,7 +3,7 @@ class ssh::params {
   $ssh_client_config  = '/etc/ssh/ssh_config'
   $ssh_known_hosts    = '/etc/ssh/ssh_known_hosts'
 
-  case $operatingsystem {
+  case $::operatingsystem {
     Solaris: {
       $ssh_package_name = 'openssh'
       $ssh_service_name = 'sshd'
@@ -19,7 +19,7 @@ class ssh::params {
       $ssh_package_name = ['openssh-server', 'nc', 'socat', 'xorg-x11-xauth']
       $ssh_service_name = 'sshd'
 
-      case $lsbmajdistrelease {
+      case $::lsbmajdistrelease {
         6: {
           $ssh_service_config_source = 'sshd_config.el6'
           $ssh_client_config_source  = 'ssh_config.el6'
@@ -31,7 +31,11 @@ class ssh::params {
       }
     }
     Gentoo: {
-      $ssh_package_name = ['net-misc/openssh', 'net-analyzer/netcat6', 'net-misc/socat']
+      $ssh_package_name = [
+        'net-misc/openssh',
+        'net-analyzer/netcat6',
+        'net-misc/socat',
+      ]
       $ssh_service_name = 'sshd'
       $ssh_service_config_source = 'sshd_config'
     }
