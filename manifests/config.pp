@@ -13,4 +13,12 @@ class ssh::config {
     require => Class["ssh::install"],
     notify  => Class["ssh::service"],
   }
+
+  file { $ssh::params::ssh_client_config:
+    ensure  => present,
+    mode    => '0600',
+    source  => "puppet:///modules/ssh/${ssh::params::ssh_client_config_source}",
+    require => Class["ssh::install"],
+    notify  => Class["ssh::service"],
+  }
 }

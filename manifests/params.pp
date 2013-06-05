@@ -1,6 +1,7 @@
 class ssh::params {
   $ssh_service_config = '/etc/ssh/sshd_config'
-  $ssh_known_hosts = '/etc/ssh/ssh_known_hosts'
+  $ssh_client_config  = '/etc/ssh/ssh_config'
+  $ssh_known_hosts    = '/etc/ssh/ssh_known_hosts'
 
   case $operatingsystem {
     Solaris: {
@@ -21,9 +22,11 @@ class ssh::params {
       case $lsbmajdistrelease {
         6: {
           $ssh_service_config_source = 'sshd_config.el6'
+          $ssh_client_config_source  = 'ssh_config.el6'
         }
         default: {
-          $ssh_service_config_source = 'sshd_config'
+          $ssh_service_config_source = 'sshd_config.el5'
+          $ssh_client_config_source  = 'ssh_config.el5'
         }
       }
     }
