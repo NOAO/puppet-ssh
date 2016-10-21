@@ -16,7 +16,7 @@ class ssh::params {
     }
     /(RedHat|CentOS|Scientific|Fedora)/: {
       # need xauth for X11 forwarding
-      $ssh_package_name = ['openssh-server', 'nc', 'socat', 'xorg-x11-xauth']
+      $ssh_package_name = ['openssh-server', 'socat', 'xorg-x11-xauth']
       $ssh_service_name = 'sshd'
 
       case $::lsbmajdistrelease {
